@@ -1,0 +1,13 @@
+#country: com
+#accesskey: ABCDEFGHIJKLMNOPQRST
+#secretkey: abcdefghijklmanopqrstuvwxyzabcdefhijlmno
+#associatetag: myatag-00
+
+# Browser user agent used for requests
+#user_agent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.76 Safari/537.36"
+
+# Request group(s) for requests
+responsegroup:
+  - Medium
+  - Images
+  - AlternateVersions
