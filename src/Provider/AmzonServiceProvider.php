@@ -5,6 +5,7 @@ namespace Bolt\Extension\Bolt\AmazonApi\Provider;
 use Bolt\Extension\Bolt\AmazonApi\Lookup;
 use Bolt\Extension\Bolt\AmazonApi\Records;
 use Bolt\Extension\Bolt\AmazonApi\Utils;
+use Pimple as Container;
 use Silex\Application;
 use Silex\ServiceProviderInterface;
 
@@ -18,27 +19,13 @@ class AmzonServiceProvider implements ServiceProviderInterface
 {
     public function register(Application $app)
     {
-        $app['amazon.lookup'] = $app->share(
+        $app['amazon.api'] = $app->share(
             function ($app) {
-                $lookup = new Lookup($app);
-
-                return $lookup;
-            }
-        );
-
-        $app['amazon.records'] = $app->share(
-            function ($app) {
-                $records = new Records($app);
-
-                return $records;
-            }
-        );
-
-        $app['amazon.utils'] = $app->share(
-            function ($app) {
-                $records = new Utils($app);
-
-                return $records;
+                return new Container([
+                    'lookup'  => $app->share(function () use ($app) { return $lookup = new Lookup($app); }),
+                    'records' => $app->share(function () use ($app) { return $lookup = new Records($app); }),
+                    'utils'   => $app->share(function () use ($app) { return $lookup = new Utils($app); }),
+                ]);
             }
         );
     }
