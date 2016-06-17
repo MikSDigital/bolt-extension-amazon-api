@@ -2,6 +2,7 @@
 
 namespace Bolt\Extension\Bolt\AmazonApi\Provider;
 
+use Bolt\Extension\Bolt\AmazonApi\Config;
 use Bolt\Extension\Bolt\AmazonApi\Lookup;
 use Bolt\Extension\Bolt\AmazonApi\Records;
 use Bolt\Extension\Bolt\AmazonApi\Utils;
@@ -17,8 +18,27 @@ use Silex\ServiceProviderInterface;
  */
 class AmzonServiceProvider implements ServiceProviderInterface
 {
+    /** @var array */
+    private $config;
+    
+    /**
+     * Constructor.
+     *
+     * @param array $config
+     */
+    public function __construct(array $config)
+    {
+        $this->config = $config;
+    }
+
     public function register(Application $app)
     {
+        $app['amazon.config'] = $app->share(
+            function () {
+                return new Config($this->config);
+            }
+        );
+
         $app['amazon.api'] = $app->share(
             function ($app) {
                 return new Container([

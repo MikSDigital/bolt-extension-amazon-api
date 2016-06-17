@@ -22,7 +22,7 @@ class AmazonApiExtension extends SimpleExtension
 {
     use DatabaseSchemaTrait;
     use StorageTrait;
-    
+
     /**
      * {@inheritdoc}
      */
@@ -30,7 +30,7 @@ class AmazonApiExtension extends SimpleExtension
     {
         return [
             $this,
-            new Provider\AmzonServiceProvider()
+            new Provider\AmzonServiceProvider($this->getConfig())
         ];
     }
 
