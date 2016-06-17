@@ -1,32 +1,33 @@
 {
-	"name" : "bolt/amazonapi",
-	"description" : "Amazon API for Bolt",
-	"type" : "bolt-extension",
-	"keywords" : [
-		"Amazon",
-		"ASIN",
-		"ApaiIO"
-	],
-	"require" : {
-		"bolt/bolt" : ">=2.1.0,<3.0.0",
-		"ext-soap" : "*"
-	},
-	"license" : "MIT",
-	"authors" : [{
-			"name" : "Gawain Lynch",
-			"email" : "gawain.lynch@gmail.com"
-		}
-	],
-	"autoload" : {
-		"files" : [
-			"init.php"
-		],
-		"psr-4" : {
-			"Bolt\\Extension\\Bolt\\AmazonApi\\" : [
-				"",
-				"src/"
-			],
-			"ApaiIO\\" : "lib/ApaiIO"
-		}
-	}
+    "name": "bolt/amazon-api",
+    "description": "Amazon API for Bolt",
+    "type": "bolt-extension",
+    "keywords": [
+        "Amazon",
+        "ASIN",
+        "ApaiIO"
+    ],
+    "require": {
+        "bolt/bolt": "^3.0",
+        "exeu/apai-io": "^2.0",
+        "ext-soap": "*"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Gawain Lynch",
+            "email": "gawain.lynch@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Bolt\\Extension\\Bolt\\AmazonApi\\": "src"
+        }
+    },
+    "extra": {
+        "bolt-class": "Bolt\\Extension\\Bolt\\AmazonApi\\AmazonApiExtension",
+        "branch-alias": {
+            "dev-master": "3.0.x-dev"
+        }
+    }
 }
