@@ -16,22 +16,10 @@ class AmazonLookup extends BaseTable
      */
     protected function addColumns()
     {
-        $this->table->addColumn('id',               'integer',    ['autoincrement' => true]);
-        $this->table->addColumn('asin',             'string',     ['length' => 32]);
-        $this->table->addColumn('type',             'string',     ['length' => 32]);
-        $this->table->addColumn('binding',          'string',     ['length' => 32]);
-        $this->table->addColumn('cached',           'date',       []);
-        $this->table->addColumn('author',           'string',     ['length' => 128]);
-        $this->table->addColumn('title',            'text',       []);
-        $this->table->addColumn('publisher',        'text',       []);
-        $this->table->addColumn('pages',            'integer',    []);
-        $this->table->addColumn('price',            'json_array', []);
-        $this->table->addColumn('image_small_url',  'json_array', []);
-        $this->table->addColumn('image_medium_url', 'json_array', []);
-        $this->table->addColumn('image_large_url',  'json_array', []);
-        $this->table->addColumn('image_local',      'text',       []);
-        $this->table->addColumn('detail_url',       'text',       []);
-        $this->table->addColumn('review',           'text',       []);
+        $this->table->addColumn('id',     'integer',    ['autoincrement' => true]);
+        $this->table->addColumn('asin',   'string',     ['length' => 32]);
+        $this->table->addColumn('item',   'json_array', []);
+        $this->table->addColumn('cached', 'datetime',   []);
     }
 
     /**
@@ -39,7 +27,7 @@ class AmazonLookup extends BaseTable
      */
     protected function addIndexes()
     {
-        $this->table->addIndex(['asin']);
+        $this->table->addUniqueIndex(['asin']);
     }
 
     /**
@@ -47,6 +35,6 @@ class AmazonLookup extends BaseTable
      */
     protected function setPrimaryKey()
     {
-        $this->table->setPrimaryKey(['asin']);
+        $this->table->setPrimaryKey(['id']);
     }
 }
