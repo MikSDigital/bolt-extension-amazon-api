@@ -22,12 +22,14 @@ class Lookup extends AbstractQuery
      */
     public function doLookupASIN($asin, $useCache = true)
     {
+        $response = false;
+
         // Check first in the database for a cached version
         if ($useCache) {
             $response = $this->getRecords()->doLookupASIN($asin);
         }
 
-        if (empty($response)) {
+        if ($response === false) {
             $response = $this->doAmazonRequest($asin);
         }
 
