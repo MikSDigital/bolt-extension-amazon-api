@@ -36,6 +36,7 @@ class XmlToParameterBagObject implements ResponseTransformerInterface
         $response = $isRoot ? new ApiResponse() : new ApiResponseElement();
 
         foreach ($simpleXML as $key => $value) {
+            $key = strtolower($key);
             if ($value instanceof \SimpleXMLElement && (string) $value === '') {
                 $value = $this->process($value);
                 $response->set($key, $value);

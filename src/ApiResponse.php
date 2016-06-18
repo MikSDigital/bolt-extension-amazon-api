@@ -18,6 +18,6 @@ class ApiResponse extends ParameterBag implements ApiResponseInterface
      */
     public function isError()
     {
-        return $this->get('Items')->get('Requests')->has('Errors');
+        return $this->get('items')->get('request')->has('errors');
     }
 }
