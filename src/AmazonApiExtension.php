@@ -2,15 +2,14 @@
 
 namespace Bolt\Extension\Bolt\AmazonApi;
 
+use Bolt\Events\CronEvent;
+use Bolt\Events\CronEvents;
 use Bolt\Extension\Bolt\AmazonApi\Storage\Entity;
 use Bolt\Extension\Bolt\AmazonApi\Storage\Repository;
 use Bolt\Extension\Bolt\AmazonApi\Storage\Schema\Table;
-use Bolt\Events\CronEvent;
-use Bolt\Events\CronEvents;
 use Bolt\Extension\DatabaseSchemaTrait;
 use Bolt\Extension\SimpleExtension;
 use Bolt\Extension\StorageTrait;
-use Silex\Application;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
@@ -30,7 +29,7 @@ class AmazonApiExtension extends SimpleExtension
     {
         return [
             $this,
-            new Provider\AmzonServiceProvider($this->getConfig())
+            new Provider\AmzonServiceProvider($this->getConfig()),
         ];
     }
 
@@ -39,7 +38,7 @@ class AmazonApiExtension extends SimpleExtension
      */
     protected function subscribe(EventDispatcherInterface $dispatcher)
     {
-        $dispatcher->addListener(CronEvents::CRON_MONTHLY, array($this, 'cronMonthly'));
+        $dispatcher->addListener(CronEvents::CRON_MONTHLY, [$this, 'cronMonthly']);
     }
 
     /**
@@ -64,18 +63,18 @@ class AmazonApiExtension extends SimpleExtension
      */
     protected function getDefaultConfig()
     {
-        return array(
-            'responsegroup' => array(
+        return [
+            'responsegroup' => [
                 'Medium',
                 'Images',
-                'AlternateVersions'
-            ),
+                'AlternateVersions',
+            ],
             'country'      => 'com',
             'accesskey'    => '',
             'secretkey'    => '',
             'associatetag' => '',
-            'user_agent'   => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.76 Safari/537.36'
-        );
+            'user_agent'   => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.76 Safari/537.36',
+        ];
     }
 
     /**
