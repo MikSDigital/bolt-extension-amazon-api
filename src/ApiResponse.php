@@ -20,4 +20,19 @@ class ApiResponse extends ParameterBag implements ApiResponseInterface
     {
         return $this->get('items')->get('request')->has('errors');
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function all()
+    {
+        $all = parent::all();
+        foreach ($all as $key => $value) {
+            if ($value instanceof ParameterBag) {
+                $all[$key] = $value->all();
+            }
+        }
+
+        return $all;
+    }
 }
