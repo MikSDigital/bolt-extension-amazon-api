@@ -85,7 +85,7 @@ class Lookup extends AbstractQuery
             return null;
         }
 
-        if ($response->has('asin') && $response->get('asin') !== '') {
+        if ($response->get('asin', null, true) !== '') {
             $this->getRecords()->doCacheASIN($response);
         }
 
