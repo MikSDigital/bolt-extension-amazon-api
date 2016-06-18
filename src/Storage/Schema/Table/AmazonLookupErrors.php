@@ -16,11 +16,11 @@ class AmazonLookupErrors extends BaseTable
      */
     protected function addColumns()
     {
-        $this->table->addColumn('id',    'integer', array('autoincrement' => true));
-        $this->table->addColumn('date',  'datetime');
-        $this->table->addColumn('asin',  'string', array('length' => 32, 'notnull' => false));
-        $this->table->addColumn('code',  'text');
-        $this->table->addColumn('error', 'text');
+        $this->table->addColumn('id',    'integer',  ['autoincrement' => true]);
+        $this->table->addColumn('date',  'datetime', []);
+        $this->table->addColumn('asin',  'string',   ['length' => 32, 'notnull' => false]);
+        $this->table->addColumn('code',  'text',     []);
+        $this->table->addColumn('error', 'text',     []);
     }
 
     /**
@@ -28,7 +28,7 @@ class AmazonLookupErrors extends BaseTable
      */
     protected function addIndexes()
     {
-        $this->table->addIndex(array('asin'));
+        $this->table->addIndex(['asin']);
     }
 
     /**
@@ -36,6 +36,6 @@ class AmazonLookupErrors extends BaseTable
      */
     protected function setPrimaryKey()
     {
-        $this->table->setPrimaryKey(array('id'));
+        $this->table->setPrimaryKey(['id']);
     }
 }
