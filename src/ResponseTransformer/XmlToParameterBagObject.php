@@ -3,9 +3,9 @@
 namespace Bolt\Extension\Bolt\AmazonApi\ResponseTransformer;
 
 use ApaiIO\ResponseTransformer\ResponseTransformerInterface;
+use Bolt\Extension\Bolt\AmazonApi\AbstractApiResponse;
 use Bolt\Extension\Bolt\AmazonApi\ApiResponse;
 use Bolt\Extension\Bolt\AmazonApi\ApiResponseElement;
-use Bolt\Extension\Bolt\AmazonApi\ApiResponseInterface;
 
 /**
  * XML to ApiResponse ParameterBag response transformer.
@@ -29,7 +29,7 @@ class XmlToParameterBagObject implements ResponseTransformerInterface
      * @param \SimpleXMLElement $simpleXML
      * @param bool              $isRoot
      *
-     * @return ApiResponseInterface
+     * @return AbstractApiResponse
      */
     private function process(\SimpleXMLElement $simpleXML, $isRoot = false)
     {

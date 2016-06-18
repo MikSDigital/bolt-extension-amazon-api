@@ -9,20 +9,6 @@ use Symfony\Component\HttpFoundation\ParameterBag;
  *
  * @author Gawain Lynch <gawain.lynch@gmail.com>
  */
-class ApiResponseElement extends ParameterBag implements ApiResponseInterface
+class ApiResponseElement extends AbstractApiResponse
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function all()
-    {
-        $all = parent::all();
-        foreach ($all as $key => $value) {
-            if ($value instanceof ParameterBag) {
-                $all[$key] = $value->all();
-            }
-        }
-
-        return $all;
-    }
 }
