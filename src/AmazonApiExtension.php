@@ -47,11 +47,13 @@ class AmazonApiExtension extends SimpleExtension
      */
     public function cronMonthly(CronEvent $event)
     {
+        $app = $this->getContainer();
         // Lookup and update db entries
         $event->output->writeln('<comment>Starting Amazon cache refresh</comment>');
 
-        $app = $this->getContainer();
-        $app['amazon.lookup']->doCacheRefresh();
+        /** @var Query\Lookup $lookup */
+        $lookup = $app['amazon.api']['lookup'];
+        $lookup->doCacheRefresh();
         $event->output->writeln('<comment>Finished Amazon cache refresh</comment>');
     }
 
