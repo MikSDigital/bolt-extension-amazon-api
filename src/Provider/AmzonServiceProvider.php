@@ -3,9 +3,9 @@
 namespace Bolt\Extension\Bolt\AmazonApi\Provider;
 
 use Bolt\Extension\Bolt\AmazonApi\Config;
-use Bolt\Extension\Bolt\AmazonApi\Lookup;
+use Bolt\Extension\Bolt\AmazonApi\Query;
 use Bolt\Extension\Bolt\AmazonApi\Records;
-use Bolt\Extension\Bolt\AmazonApi\Utils;
+use Bolt\Extension\Bolt\AmazonApi\Storage\Entity;
 use Pimple as Container;
 use Silex\Application;
 use Silex\ServiceProviderInterface;
@@ -42,10 +42,24 @@ class AmzonServiceProvider implements ServiceProviderInterface
         $app['amazon.api'] = $app->share(
             function ($app) {
                 return new Container([
-                    'lookup'  => $app->share(function () use ($app) { return $lookup = new Lookup($app); }),
-                    'records' => $app->share(function () use ($app) { return $lookup = new Records($app); }),
-                    'utils'   => $app->share(function () use ($app) { return $lookup = new Utils($app); }),
+                    'lookup'  => $app->share(function () use ($app) { return new Query\Lookup($app['amazon.config'], $app['amazon.records'], $app['guzzle.client']); }),
+                    'product' => $app->share(function () use ($app) { return new Query\Product($app['amazon.config'], $app['amazon.records'], $app['guzzle.client']); }),
                 ]);
+            }
+        );
+
+        $app['amazon.repos'] = $app->share(
+            function ($app) {
+                return new Container([
+                    'lookup'        => $app->share(function () use ($app) { return $app['storage']->getRepository(Entity\AmazonLookup::class); }),
+                    'lookup_errors' => $app->share(function () use ($app) { return $app['storage']->getRepository(Entity\AmazonLookupErrors::class); }),
+                ]);
+            }
+        );
+
+        $app['amazon.records'] = $app->share(
+            function ($app) {
+                return new Records($app['amazon.config'], $app['amazon.repos']);
             }
         );
     }
