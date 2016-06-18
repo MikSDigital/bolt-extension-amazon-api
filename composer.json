@@ -7,11 +7,6 @@
         "ASIN",
         "ApaiIO"
     ],
-    "require": {
-        "bolt/bolt": "^3.0",
-        "exeu/apai-io": "^2.0",
-        "ext-soap": "*"
-    },
     "license": "MIT",
     "authors": [
         {
@@ -19,6 +14,14 @@
             "email": "gawain.lynch@gmail.com"
         }
     ],
+    "provide": {
+        "guzzlehttp/guzzle": "^6.0"
+    },
+    "require": {
+        "bolt/bolt": "^3.0",
+        "exeu/apai-io": "^2.0",
+        "ext-soap": "*"
+    },
     "autoload": {
         "psr-4": {
             "Bolt\\Extension\\Bolt\\AmazonApi\\": "src"
