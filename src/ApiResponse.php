@@ -11,4 +11,13 @@ use Symfony\Component\HttpFoundation\ParameterBag;
  */
 class ApiResponse extends ParameterBag implements ApiResponseInterface
 {
+    /**
+     * Check if the Amazon response was an error response.
+     *
+     * @return bool
+     */
+    public function isError()
+    {
+        return $this->get('Items')->get('Requests')->has('Errors');
+    }
 }
