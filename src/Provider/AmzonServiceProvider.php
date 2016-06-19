@@ -3,6 +3,7 @@
 namespace Bolt\Extension\Bolt\AmazonApi\Provider;
 
 use Bolt\Extension\Bolt\AmazonApi\Config;
+use Bolt\Extension\Bolt\AmazonApi\ImageManager;
 use Bolt\Extension\Bolt\AmazonApi\Query;
 use Bolt\Extension\Bolt\AmazonApi\Storage\Entity;
 use Bolt\Extension\Bolt\AmazonApi\Storage\Records;
@@ -20,7 +21,7 @@ class AmzonServiceProvider implements ServiceProviderInterface
 {
     /** @var array */
     private $config;
-    
+
     /**
      * Constructor.
      *
@@ -60,6 +61,12 @@ class AmzonServiceProvider implements ServiceProviderInterface
         $app['amazon.records'] = $app->share(
             function ($app) {
                 return new Records($app['amazon.config'], $app['amazon.repos']);
+            }
+        );
+
+        $app['amazon.images'] = $app->share(
+            function ($app) {
+                return new ImageManager($app['amazon.config'], $app['guzzle.client'], $app['filesystem']);
             }
         );
     }
