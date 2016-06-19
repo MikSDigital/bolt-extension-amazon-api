@@ -67,30 +67,68 @@ abstract class AbstractItem
         $this->salesRank = $data['salesrank'];
 
         // Image sets
-        $this->swatchImage = new Component\Image($data['imagesets']['imageset']['swatchimage']);
-        $this->tinyImage = new Component\Image($data['imagesets']['imageset']['tinyimage']);
-        $this->smallImage = new Component\Image($data['imagesets']['imageset']['smallimage']);
-        $this->mediumImage = new Component\Image($data['imagesets']['imageset']['mediumimage']);
-        $this->largeImage = new Component\Image($data['imagesets']['imageset']['largeimage']);
-        $this->hiResImage = new Component\Image($data['imagesets']['imageset']['hiresimage']);
+        $this->swatchImage = $this->getImageSetComponent($data, 'swatchimage');
+        $this->tinyImage = $this->getImageSetComponent($data, 'tinyimage');
+        $this->smallImage = $this->getImageSetComponent($data, 'smallimage');
+        $this->mediumImage = $this->getImageSetComponent($data, 'mediumimage');
+        $this->largeImage = $this->getImageSetComponent($data, 'largeimage');
+        $this->hiResImage = $this->getImageSetComponent($data, 'hiresimage');
 
         // Item attributes
-        $this->binding = $data['itemattributes']['binding'];
-        $this->brand = $data['itemattributes']['brand'];
-        $this->feature = $data['itemattributes']['feature'];
-        $this->label = $data['itemattributes']['label'];
-        $this->listPrice = new Component\Price($data['itemattributes']['listprice']);
-        $this->manufacturer = $data['itemattributes']['manufacturer'];
-        $this->packageDimensions = new Component\Dimensions($data['itemattributes']['packagedimensions']);
-        $this->packageQuantity = $data['itemattributes']['packagequantity'];
-        $this->productGroup = $data['itemattributes']['productgroup'];
-        $this->productTypeName = $data['itemattributes']['producttypename'];
-        $this->publisher = $data['itemattributes']['publisher'];
-        $this->studio = $data['itemattributes']['studio'];
-        $this->title = $data['itemattributes']['title'];
+        $this->binding = $this->getItemAttributeComponent($data, 'binding');
+        $this->brand = $this->getItemAttributeComponent($data, 'brand');
+        $this->feature = $this->getItemAttributeComponent($data, 'feature');
+        $this->label = $this->getItemAttributeComponent($data, 'label');
+        $this->listPrice = $this->getItemAttributeComponent($data, 'listprice');
+        $this->manufacturer = $this->getItemAttributeComponent($data, 'manufacturer');
+        $this->packageDimensions = $this->getItemAttributeComponent($data, 'packagedimensions');
+        $this->packageQuantity = $this->getItemAttributeComponent($data, 'packagequantity');
+        $this->productGroup = $this->getItemAttributeComponent($data, 'productgroup');
+        $this->productTypeName = $this->getItemAttributeComponent($data, 'producttypename');
+        $this->publisher = $this->getItemAttributeComponent($data, 'publisher');
+        $this->studio = $this->getItemAttributeComponent($data, 'studio');
+        $this->title = $this->getItemAttributeComponent($data, 'title');
 
         // Other
         $this->offerSummary = new Component\OfferSummary($data['offersummary']);
         $this->editorialReview = new Component\EditorialReview($data['editorialreviews']['editorialreview']);
+    }
+
+    /**
+     * @param array  $data
+     * @param string $setName
+     *
+     * @return Component\Image|null
+     */
+    protected function getImageSetComponent(array $data, $setName)
+    {
+        if (!isset($data['imagesets']['imageset'][$setName])) {
+            return null;
+        }
+
+        return new Component\Image($data['imagesets']['imageset'][$setName]);
+    }
+
+    /**
+     * @param array  $data
+     * @param string $attributeName
+     *
+     * @return Component\Dimensions|null
+     */
+    protected function getItemAttributeComponent(array $data, $attributeName)
+    {
+        if (!isset($data['itemattributes'][$attributeName])) {
+            return null;
+        }
+
+        if ($attributeName === 'listprice') {
+            return new Component\Price($data['itemattributes'][$attributeName]);
+        }
+
+        if ($attributeName === 'packagedimensions') {
+            return new Component\Dimensions($data['itemattributes'][$attributeName]);
+        }
+
+        return $data['itemattributes'][$attributeName];
     }
 }
