@@ -13,20 +13,36 @@ use Bolt\Storage\Repository;
 class AmazonLookup extends Repository
 {
     /**
+     * {@inheritdoc}
+     */
+    public function save($entity, $silent = null)
+    {
+        $existing = $this->findOneBy(['asin' => $entity->getAsin()]);
+
+        if ($existing) {
+            $response = $this->update($entity);
+        } else {
+            $response = $this->insert($entity);
+        }
+
+        return $response;
+    }
+
+    /**
      * Check database for a pre-stored ASIN
      *
      * @param string $asin An Amazon ASIN
      *
      * @return Entity\AmazonLookup
      */
-    public function doLookupASIN($asin)
+    public function getLookupByASIN($asin)
     {
-        $query = $this->doLookupASINQuery($asin);
-        
+        $query = $this->getLookupByASINQuery($asin);
+
         return $this->findOneWith($query);
     }
-    
-    public function doLookupASINQuery($asin)
+
+    public function getLookupByASINQuery($asin)
     {
         return $this->createQueryBuilder()
             ->select('*')
@@ -40,7 +56,7 @@ class AmazonLookup extends Repository
      *
      * @return Entity\AmazonLookup[]
      */
-    public function doLookupASINs()
+    public function getLookups()
     {
         return $this->findAll();
     }
