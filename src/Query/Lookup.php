@@ -3,7 +3,7 @@
 namespace Bolt\Extension\Bolt\AmazonApi\Query;
 
 use ApaiIO\Operations\Lookup as ApaiIOLookup;
-use Bolt\Extension\Bolt\AmazonApi\ApiResponse;
+use Bolt\Extension\Bolt\AmazonApi\Response\ApiResponse;
 use Bolt\Extension\Bolt\AmazonApi\Storage\Entity;
 use Bolt\Extension\Bolt\AmazonApi\Utils;
 

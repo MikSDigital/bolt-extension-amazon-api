@@ -1,6 +1,6 @@
 <?php
 
-namespace Bolt\Extension\Bolt\AmazonApi;
+namespace Bolt\Extension\Bolt\AmazonApi\Response;
 
 /**
  * API responses.

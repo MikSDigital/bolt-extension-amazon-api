@@ -3,9 +3,9 @@
 namespace Bolt\Extension\Bolt\AmazonApi\ResponseTransformer;
 
 use ApaiIO\ResponseTransformer\ResponseTransformerInterface;
-use Bolt\Extension\Bolt\AmazonApi\AbstractApiResponse;
-use Bolt\Extension\Bolt\AmazonApi\ApiResponse;
-use Bolt\Extension\Bolt\AmazonApi\ApiResponseElement;
+use Bolt\Extension\Bolt\AmazonApi\Response\AbstractApiResponse;
+use Bolt\Extension\Bolt\AmazonApi\Response\ApiResponse;
+use Bolt\Extension\Bolt\AmazonApi\Response\ApiResponseElement;
 
 /**
  * XML to ApiResponse ParameterBag response transformer.

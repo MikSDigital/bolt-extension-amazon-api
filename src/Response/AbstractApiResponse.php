@@ -1,6 +1,6 @@
 <?php
 
-namespace Bolt\Extension\Bolt\AmazonApi;
+namespace Bolt\Extension\Bolt\AmazonApi\Response;
 
 use Symfony\Component\HttpFoundation\ParameterBag;
 
