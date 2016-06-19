@@ -4,8 +4,8 @@ namespace Bolt\Extension\Bolt\AmazonApi\Provider;
 
 use Bolt\Extension\Bolt\AmazonApi\Config;
 use Bolt\Extension\Bolt\AmazonApi\Query;
-use Bolt\Extension\Bolt\AmazonApi\Records;
 use Bolt\Extension\Bolt\AmazonApi\Storage\Entity;
+use Bolt\Extension\Bolt\AmazonApi\Storage\Records;
 use Pimple as Container;
 use Silex\Application;
 use Silex\ServiceProviderInterface;
