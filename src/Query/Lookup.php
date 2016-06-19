@@ -22,7 +22,7 @@ class Lookup extends AbstractQuery
      *
      * @return Entity\AmazonLookup
      */
-    public function doLookupASIN($asin, $useCache = true)
+    public function getItemByAsin($asin, $useCache = true)
     {
         $response = false;
 
@@ -36,27 +36,6 @@ class Lookup extends AbstractQuery
         }
 
         return $response;
-    }
-
-    /**
-     * Re-query Amazon for each cached ASIN and update our cache with any
-     * changed information.
-     */
-    public function doCacheRefresh()
-    {
-        // Lots of records will take a while to do… Amazon limits us to one
-        // request per second
-        set_time_limit(0);
-
-        $rows = $this->getRecords()->getLookups();
-
-        /** @var Entity\AmazonLookup $row */
-        foreach ($rows as $row) {
-            $this->doLookupASIN($row->getAsin(), false);
-
-            // Rate limit our refresh
-            Utils::requestThrottle();
-        }
     }
 
     /**
