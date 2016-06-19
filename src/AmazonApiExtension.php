@@ -23,6 +23,11 @@ class AmazonApiExtension extends SimpleExtension
     use DatabaseSchemaTrait;
     use StorageTrait;
 
+    public function getDisplayName()
+    {
+        return 'Amazon API';
+    }
+
     /**
      * {@inheritdoc}
      */
