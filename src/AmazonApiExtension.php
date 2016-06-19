@@ -10,6 +10,7 @@ use Bolt\Extension\Bolt\AmazonApi\Storage\Schema\Table;
 use Bolt\Extension\DatabaseSchemaTrait;
 use Bolt\Extension\SimpleExtension;
 use Bolt\Extension\StorageTrait;
+use Silex\Application;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
@@ -21,6 +22,15 @@ class AmazonApiExtension extends SimpleExtension
 {
     use DatabaseSchemaTrait;
     use StorageTrait;
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function registerServices(Application $app)
+    {
+        $this->extendDatabaseSchemaServices();
+        $this->extendRepositoryMapping();
+    }
 
     /**
      * {@inheritdoc}
@@ -70,10 +80,10 @@ class AmazonApiExtension extends SimpleExtension
                 'AlternateVersions',
             ],
             'country'      => 'com',
-            'accesskey'    => '',
-            'secretkey'    => '',
-            'associatetag' => '',
-            'user_agent'   => 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.76 Safari/537.36',
+            'accesskey'    => null,
+            'secretkey'    => null,
+            'associatetag' => null,
+            'user_agent'   => null,
         ];
     }
 
