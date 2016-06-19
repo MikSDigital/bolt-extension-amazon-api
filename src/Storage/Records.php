@@ -5,8 +5,6 @@ namespace Bolt\Extension\Bolt\AmazonApi\Storage;
 use Bolt\Extension\Bolt\AmazonApi\AbstractApiResponse;
 use Bolt\Extension\Bolt\AmazonApi\ApiResponseElement;
 use Bolt\Extension\Bolt\AmazonApi\Config;
-use Bolt\Extension\Bolt\AmazonApi\Storage\Entity;
-use Bolt\Extension\Bolt\AmazonApi\Storage\Repository;
 use Carbon\Carbon;
 use Pimple as Container;
 

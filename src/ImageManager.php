@@ -6,7 +6,6 @@ use Bolt\Filesystem\Manager;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request as Psr7Request;
 use Psr\Http\Message\ResponseInterface;
-use Silex\Application;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
