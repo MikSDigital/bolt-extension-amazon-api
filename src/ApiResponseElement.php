@@ -2,8 +2,6 @@
 
 namespace Bolt\Extension\Bolt\AmazonApi;
 
-use Symfony\Component\HttpFoundation\ParameterBag;
-
 /**
  * API response elements.
  *
