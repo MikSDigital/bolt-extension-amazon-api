@@ -29,6 +29,7 @@
     },
     "extra": {
         "bolt-class": "Bolt\\Extension\\Bolt\\AmazonApi\\AmazonApiExtension",
+        "bolt-icon": "icon-amazon.png",
         "branch-alias": {
             "dev-master": "3.0.x-dev"
         }
