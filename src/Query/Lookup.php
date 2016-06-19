@@ -8,7 +8,7 @@ use Bolt\Extension\Bolt\AmazonApi\Storage\Entity;
 use Bolt\Extension\Bolt\AmazonApi\Utils;
 
 /**
- * Amazon query request class
+ * Amazon query request class.
  *
  * @author Gawain Lynch <gawain.lynch@gmail.com>
  */
@@ -20,7 +20,7 @@ class Lookup extends AbstractQuery
      * @param string  $asin
      * @param boolean $useCache
      *
-     * @return array
+     * @return Entity\AmazonLookup
      */
     public function doLookupASIN($asin, $useCache = true)
     {
@@ -39,8 +39,8 @@ class Lookup extends AbstractQuery
     }
 
     /**
-     * Re-query Amazon for each cached ASIN and update our cache with any changed
-     * information
+     * Re-query Amazon for each cached ASIN and update our cache with any
+     * changed information.
      */
     public function doCacheRefresh()
     {
@@ -64,7 +64,9 @@ class Lookup extends AbstractQuery
      *
      * @param string $asin
      *
-     * @return array
+     * @throws \RuntimeException
+     *
+     * @return Entity\AmazonLookup
      */
     private function doAmazonRequest($asin)
     {
@@ -92,8 +94,10 @@ class Lookup extends AbstractQuery
 
         if ($response->get('asin', null, true) !== '') {
             $this->getRecords()->saveLookup($response);
+
+            return $this->getRecords()->getLookupByASIN($asin);
         }
 
-        return $response;
+        throw new \RuntimeException(sprintf('Invalid response from Amazon API for %s', $asin));
     }
 }
