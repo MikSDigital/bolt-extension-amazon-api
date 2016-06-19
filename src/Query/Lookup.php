@@ -4,6 +4,8 @@ namespace Bolt\Extension\Bolt\AmazonApi\Query;
 
 use ApaiIO\Operations\Lookup as ApaiIOLookup;
 use Bolt\Extension\Bolt\AmazonApi\ApiResponse;
+use Bolt\Extension\Bolt\AmazonApi\Storage\Entity;
+use Bolt\Extension\Bolt\AmazonApi\Utils;
 
 /**
  * Amazon query request class
@@ -26,7 +28,7 @@ class Lookup extends AbstractQuery
 
         // Check first in the database for a cached version
         if ($useCache) {
-            $response = $this->getRecords()->doLookupASIN($asin);
+            $response = $this->getRecords()->getLookupByASIN($asin);
         }
 
         if ($response === false) {
@@ -46,13 +48,14 @@ class Lookup extends AbstractQuery
         // request per second
         set_time_limit(0);
 
-        $rows = $this->getRecords()->doLookupASINs();
+        $rows = $this->getRecords()->getLookups();
 
+        /** @var Entity\AmazonLookup $row */
         foreach ($rows as $row) {
-            $this->doLookupASIN($row['asin'], false);
+            $this->doLookupASIN($row->getAsin(), false);
 
             // Rate limit our refresh
-            $this->getUtils()->requestThrottle();
+            Utils::requestThrottle();
         }
     }
 
@@ -66,7 +69,7 @@ class Lookup extends AbstractQuery
     private function doAmazonRequest($asin)
     {
         // Throttle the request, if required
-//$this->getUtils()->requestThrottle();
+        Utils::requestThrottle();
 
         /** @var $lookup \ApaiIO\Operations\Lookup */
         $lookup = new ApaiIOLookup();
@@ -82,13 +85,13 @@ class Lookup extends AbstractQuery
 
         // A valid request may have an error… 'cause Amazon…
         if ($response->isError()) {
-            $this->getRecords()->doLogError($response);
+            $this->getRecords()->saveLookupError($response);
 
             return null;
         }
 
         if ($response->get('asin', null, true) !== '') {
-            $this->getRecords()->doCacheASIN($response);
+            $this->getRecords()->saveLookup($response);
         }
 
         return $response;

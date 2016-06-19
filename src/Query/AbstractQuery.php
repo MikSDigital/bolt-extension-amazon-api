@@ -7,7 +7,7 @@ use ApaiIO\Configuration\GenericConfiguration;
 use ApaiIO\Request\GuzzleRequest;
 use Bolt\Extension\Bolt\AmazonApi\Config;
 use Bolt\Extension\Bolt\AmazonApi\Exception\InvalidConfigurationException;
-use Bolt\Extension\Bolt\AmazonApi\Records;
+use Bolt\Extension\Bolt\AmazonApi\Storage\Records;
 use Bolt\Extension\Bolt\AmazonApi\ResponseTransformer\XmlToParameterBagObject;
 use GuzzleHttp\Client;
 
