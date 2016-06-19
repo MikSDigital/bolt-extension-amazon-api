@@ -2,8 +2,10 @@
 
 namespace Bolt\Extension\Bolt\AmazonApi\Storage\Repository;
 
+use Bolt\Extension\Bolt\AmazonApi\Item;
 use Bolt\Extension\Bolt\AmazonApi\Storage\Entity;
 use Bolt\Storage\Repository;
+use Doctrine\DBAL\Query\QueryBuilder;
 
 /**
  * Amazon lookup repository.
@@ -12,6 +14,24 @@ use Bolt\Storage\Repository;
  */
 class AmazonLookup extends Repository
 {
+    /**
+     * {@inheritdoc}
+     */
+    protected function hydrate(array $data, QueryBuilder $qb)
+    {
+        $entity = parent::hydrate($data, $qb);
+        $item = $entity->getItem();
+        $group = strtolower($item['itemattributes']['productgroup']);
+
+        if ($group === 'apparel') {
+            $entity->setItem(new Item\Apparel($item));
+        } elseif ($group === 'book') {
+            $entity->setItem(new Item\Book($item));
+        }
+
+        return $entity;
+    }
+
     /**
      * {@inheritdoc}
      */
