@@ -2,6 +2,9 @@
 
 namespace Bolt\Extension\Bolt\AmazonApi;
 
+use Bolt\Extension\Bolt\AmazonApi\Item\Book;
+use Bolt\Extension\Bolt\AmazonApi\Storage\Entity;
+
 /**
  * Utility class.
  *
@@ -33,25 +36,23 @@ class Utils
     }
 
     /**
-     * Get the opposing formats ASIN.
+     * Get the opposing format's ASIN.
      *
-     * @param array  $response
-     * @param string $format   Either 'physical' or 'digital'
+     * @param Entity\AmazonLookup $lookup
+     * @param string              $format Either 'physical' or 'digital'
      *
-     * @return string|null
+     * @return null|string
      */
-    public static function getAltVersionASIN($response, $format)
+    public static function getAltVersionASIN(Entity\AmazonLookup $lookup, $format)
     {
-        if (!isset($response['alternateversions'])) {
-            return null;
-        }
+        /** @var Book $item */
+        $item = $lookup->getItem();
+        $altVersion = $item->getAlternateVersions();
 
-        foreach ($response['alternateversions'] as $alt) {
-            if ($format === 'physical' && ($alt['Binding'] === 'Hardcover' || $alt['Binding'] === 'Paperback')) {
-                return $alt['ASIN'];
-            } elseif ($format === 'digital' && $alt['Binding'] === 'Kindle Edition') {
-                return $alt['ASIN'];
-            }
+        if ($format === 'physical' && ($altVersion->getBinding() === 'Hardcover' || $altVersion->getBinding() === 'Paperback')) {
+            return $altVersion->getAsin();
+        } elseif ($format === 'digital' && $altVersion->getBinding() === 'Kindle Edition') {
+            return $altVersion->getAsin();
         }
 
         return null;

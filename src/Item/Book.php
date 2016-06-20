@@ -2,6 +2,7 @@
 
 namespace Bolt\Extension\Bolt\AmazonApi\Item;
 
+use Bolt\Extension\Bolt\AmazonApi\Item\Component\BookVersion;
 use Bolt\Extension\Bolt\AmazonApi\Item\Component\Dimensions;
 use Bolt\Extension\Bolt\AmazonApi\Item\Component\Language;
 
@@ -33,6 +34,8 @@ class Book extends AbstractItem
     protected $publicationDate;
     /** @var string */
     protected $releaseDate;
+    /** @var BookVersion */
+    protected $alternateVersions;
 
     /**
      * Constructor.
@@ -56,6 +59,7 @@ class Book extends AbstractItem
         $this->partNumber = $data['itemattributes']['partnumber'];
         $this->publicationDate = $data['itemattributes']['publicationdate'];
         $this->releaseDate = $data['itemattributes']['releasedate'];
+        $this->alternateVersions = new BookVersion($data['alternateversions']['alternateversion']);
     }
 
     /**
@@ -314,6 +318,26 @@ class Book extends AbstractItem
     public function setReleaseDate($releaseDate)
     {
         $this->releaseDate = $releaseDate;
+
+        return $this;
+    }
+
+    /**
+     * @return BookVersion
+     */
+    public function getAlternateVersions()
+    {
+        return $this->alternateVersions;
+    }
+
+    /**
+     * @param BookVersion $alternateVersions
+     *
+     * @return Book
+     */
+    public function setAlternateVersions($alternateVersions)
+    {
+        $this->alternateVersions = $alternateVersions;
 
         return $this;
     }

@@ -2,6 +2,7 @@
 
 namespace Bolt\Extension\Bolt\AmazonApi\Storage\Entity;
 
+use Bolt\Extension\Bolt\AmazonApi\Item\AbstractItem;
 use Bolt\Storage\Entity\Entity;
 
 /**
@@ -13,7 +14,7 @@ class AmazonLookup extends Entity
 {
     /** @var string */
     protected $asin;
-    /** @var array */
+    /** @var AbstractItem */
     protected $item;
     /** @var \DateTime */
     protected $cached;
