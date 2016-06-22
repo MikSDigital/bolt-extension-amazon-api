@@ -27,6 +27,8 @@ class AmazonLookup extends Repository
             $entity->setItem(new Item\Apparel($item));
         } elseif ($group === 'book') {
             $entity->setItem(new Item\Book($item));
+        } else {
+            $entity->setItem(new Item\GenericItem($item));
         }
 
         return $entity;
