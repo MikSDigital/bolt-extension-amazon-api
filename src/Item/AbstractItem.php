@@ -95,6 +95,486 @@ abstract class AbstractItem
     }
 
     /**
+     * @return string
+     */
+    public function getAsin()
+    {
+        return $this->asin;
+    }
+
+    /**
+     * @param string $asin
+     *
+     * @return AbstractItem
+     */
+    public function setAsin($asin)
+    {
+        $this->asin = $asin;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDetailPageUrl()
+    {
+        return $this->detailPageUrl;
+    }
+
+    /**
+     * @param string $detailPageUrl
+     *
+     * @return AbstractItem
+     */
+    public function setDetailPageUrl($detailPageUrl)
+    {
+        $this->detailPageUrl = $detailPageUrl;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSalesRank()
+    {
+        return $this->salesRank;
+    }
+
+    /**
+     * @param string $salesRank
+     *
+     * @return AbstractItem
+     */
+    public function setSalesRank($salesRank)
+    {
+        $this->salesRank = $salesRank;
+
+        return $this;
+    }
+
+    /**
+     * @return Component\Image
+     */
+    public function getSwatchImage()
+    {
+        return $this->swatchImage;
+    }
+
+    /**
+     * @param Component\Image $swatchImage
+     *
+     * @return AbstractItem
+     */
+    public function setSwatchImage($swatchImage)
+    {
+        $this->swatchImage = $swatchImage;
+
+        return $this;
+    }
+
+    /**
+     * @return Component\Image
+     */
+    public function getTinyImage()
+    {
+        return $this->tinyImage;
+    }
+
+    /**
+     * @param Component\Image $tinyImage
+     *
+     * @return AbstractItem
+     */
+    public function setTinyImage($tinyImage)
+    {
+        $this->tinyImage = $tinyImage;
+
+        return $this;
+    }
+
+    /**
+     * @return Component\Image
+     */
+    public function getSmallImage()
+    {
+        return $this->smallImage;
+    }
+
+    /**
+     * @param Component\Image $smallImage
+     *
+     * @return AbstractItem
+     */
+    public function setSmallImage($smallImage)
+    {
+        $this->smallImage = $smallImage;
+
+        return $this;
+    }
+
+    /**
+     * @return Component\Image
+     */
+    public function getMediumImage()
+    {
+        return $this->mediumImage;
+    }
+
+    /**
+     * @param Component\Image $mediumImage
+     *
+     * @return AbstractItem
+     */
+    public function setMediumImage($mediumImage)
+    {
+        $this->mediumImage = $mediumImage;
+
+        return $this;
+    }
+
+    /**
+     * @return Component\Image
+     */
+    public function getLargeImage()
+    {
+        return $this->largeImage;
+    }
+
+    /**
+     * @param Component\Image $largeImage
+     *
+     * @return AbstractItem
+     */
+    public function setLargeImage($largeImage)
+    {
+        $this->largeImage = $largeImage;
+
+        return $this;
+    }
+
+    /**
+     * @return Component\Image
+     */
+    public function getHiResImage()
+    {
+        return $this->hiResImage;
+    }
+
+    /**
+     * @param Component\Image $hiResImage
+     *
+     * @return AbstractItem
+     */
+    public function setHiResImage($hiResImage)
+    {
+        $this->hiResImage = $hiResImage;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBinding()
+    {
+        return $this->binding;
+    }
+
+    /**
+     * @param string $binding
+     *
+     * @return AbstractItem
+     */
+    public function setBinding($binding)
+    {
+        $this->binding = $binding;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBrand()
+    {
+        return $this->brand;
+    }
+
+    /**
+     * @param string $brand
+     *
+     * @return AbstractItem
+     */
+    public function setBrand($brand)
+    {
+        $this->brand = $brand;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFeature()
+    {
+        return $this->feature;
+    }
+
+    /**
+     * @param string $feature
+     *
+     * @return AbstractItem
+     */
+    public function setFeature($feature)
+    {
+        $this->feature = $feature;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLabel()
+    {
+        return $this->label;
+    }
+
+    /**
+     * @param string $label
+     *
+     * @return AbstractItem
+     */
+    public function setLabel($label)
+    {
+        $this->label = $label;
+
+        return $this;
+    }
+
+    /**
+     * @return Component\Price
+     */
+    public function getListPrice()
+    {
+        return $this->listPrice;
+    }
+
+    /**
+     * @param Component\Price $listPrice
+     *
+     * @return AbstractItem
+     */
+    public function setListPrice($listPrice)
+    {
+        $this->listPrice = $listPrice;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getManufacturer()
+    {
+        return $this->manufacturer;
+    }
+
+    /**
+     * @param string $manufacturer
+     *
+     * @return AbstractItem
+     */
+    public function setManufacturer($manufacturer)
+    {
+        $this->manufacturer = $manufacturer;
+
+        return $this;
+    }
+
+    /**
+     * @return Component\Dimensions
+     */
+    public function getPackageDimensions()
+    {
+        return $this->packageDimensions;
+    }
+
+    /**
+     * @param Component\Dimensions $packageDimensions
+     *
+     * @return AbstractItem
+     */
+    public function setPackageDimensions($packageDimensions)
+    {
+        $this->packageDimensions = $packageDimensions;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPackageQuantity()
+    {
+        return $this->packageQuantity;
+    }
+
+    /**
+     * @param int $packageQuantity
+     *
+     * @return AbstractItem
+     */
+    public function setPackageQuantity($packageQuantity)
+    {
+        $this->packageQuantity = $packageQuantity;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getProductGroup()
+    {
+        return $this->productGroup;
+    }
+
+    /**
+     * @param string $productGroup
+     *
+     * @return AbstractItem
+     */
+    public function setProductGroup($productGroup)
+    {
+        $this->productGroup = $productGroup;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getProductTypeName()
+    {
+        return $this->productTypeName;
+    }
+
+    /**
+     * @param string $productTypeName
+     *
+     * @return AbstractItem
+     */
+    public function setProductTypeName($productTypeName)
+    {
+        $this->productTypeName = $productTypeName;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPublisher()
+    {
+        return $this->publisher;
+    }
+
+    /**
+     * @param string $publisher
+     *
+     * @return AbstractItem
+     */
+    public function setPublisher($publisher)
+    {
+        $this->publisher = $publisher;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStudio()
+    {
+        return $this->studio;
+    }
+
+    /**
+     * @param string $studio
+     *
+     * @return AbstractItem
+     */
+    public function setStudio($studio)
+    {
+        $this->studio = $studio;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param string $title
+     *
+     * @return AbstractItem
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * @return Component\OfferSummary
+     */
+    public function getOfferSummary()
+    {
+        return $this->offerSummary;
+    }
+
+    /**
+     * @param Component\OfferSummary $offerSummary
+     *
+     * @return AbstractItem
+     */
+    public function setOfferSummary($offerSummary)
+    {
+        $this->offerSummary = $offerSummary;
+
+        return $this;
+    }
+
+    /**
+     * @return Component\EditorialReview
+     */
+    public function getEditorialReview()
+    {
+        return $this->editorialReview;
+    }
+
+    /**
+     * @param Component\EditorialReview $editorialReview
+     *
+     * @return AbstractItem
+     */
+    public function setEditorialReview($editorialReview)
+    {
+        $this->editorialReview = $editorialReview;
+
+        return $this;
+    }
+
+    /**
      * @param array  $data
      * @param string $setName
      *
