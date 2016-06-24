@@ -21,8 +21,11 @@ class AmazonLookup extends Repository
     {
         $entity = parent::hydrate($data, $qb);
         $item = $entity->getItem();
-        $group = strtolower($item['itemattributes']['productgroup']);
+        if ($item === null) {
+            return $entity;
+        }
 
+        $group = strtolower($item['itemattributes']['productgroup']);
         if ($group === 'apparel') {
             $entity->setItem(new Item\Apparel($item));
         } elseif ($group === 'book') {
